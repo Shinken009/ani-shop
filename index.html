@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ani Shop - Calculadora Kawaii</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="kawaii-bg"></div>
+  <div class="container">
+    <div class="logo-section">
+      <img src="logo.png" class="logo-img animate-bounce" alt="Ani Shop" />
+      <h1 class="logo-title">Ani Shop</h1>
+      <p class="logo-desc">Calculadora de Ganancias para Emprender 💖</p>
+    </div>
+    <section class="calculator-section">
+      <form id="calculator-form" autocomplete="off">
+        <label>
+          <span>Cantidad de productos en la caja:</span>
+          <input type="number" min="1" id="cantidad" class="kawaii-input" required />
+        </label>
+        <label>
+          <span>Valor total de la caja:</span>
+          <input type="number" min="0" id="valorCaja" class="kawaii-input" required />
+        </label>
+        <label>
+          <span>Porcentaje de ganancia deseado (%):</span>
+          <input type="number" min="0" id="porcentaje" class="kawaii-input" required />
+        </label>
+        <div class="button-group">
+          <button type="submit" class="kawaii-btn">Calcular 🧮</button>
+          <button type="button" id="reset-btn" class="kawaii-btn reset">Limpiar 🔄</button>
+        </div>
+      </form>
+      <div id="resultados" class="result-section" style="display:none;">
+        <div class="res-block">
+          <span class="res-label">Costo unitario:</span>
+          <span id="res-costo" class="res-value"></span>
+          <div class="formula">(valor de la caja dividido por cantidad de productos)</div>
+        </div>
+        <div class="res-block">
+          <span class="res-label">Precio de venta sugerido:</span>
+          <span id="res-precio" class="res-value"></span>
+          <div class="formula">(costo unitario multiplicado por (1 más porcentaje de ganancia dividido por 100))</div>
+        </div>
+        <div class="res-block">
+          <span class="res-label">Ganancia por unidad:</span>
+          <span id="res-gan-uni" class="res-value"></span>
+          <div class="formula">(precio de venta sugerido menos costo unitario)</div>
+        </div>
+        <div class="res-block final">
+          <span class="res-label">Ganancia total:</span>
+          <span id="res-gan-tot" class="res-value"></span>
+          <div class="formula">(ganancia por unidad multiplicado por cantidad de productos)</div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

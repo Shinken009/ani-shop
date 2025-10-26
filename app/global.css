@@ -1,7 +1,10 @@
 @tailwind base;
+
 @tailwind components;
+
 @tailwind utilities;
 
+/* Fondo principal pixelado */
 body {
   background-image: url("/pixel-bg.png");
   background-size: cover;
@@ -10,16 +13,95 @@ body {
   min-height: 100vh;
 }
 
+/* Inputs kawaii */
 .kawaii-input {
   border: 2px solid #fbcfe8;
   border-radius: 12px;
-  padding: 8px;
+  padding: 12px;
   background-color: #fff0f6;
   outline: none;
-  transition: 0.3s;
+  font-size: 1.1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  color: #7c3aed;
+  box-shadow: 0 1px 6px #f9a8d420;
 }
 
 .kawaii-input:focus {
   border-color: #f472b6;
-  box-shadow: 0 0 6px #f9a8d4;
+  box-shadow: 0 0 8px #f9a8d4bb;
+  background-color: #fffafd;
+}
+
+.kawaii-font {
+  font-family: 'Quicksand', cursive, sans-serif;
+  letter-spacing: 1.5px;
+}
+
+.kawaii-formulas {
+  font-size: 1.08rem;
+}
+
+@keyframes kawaii-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-bounce {
+  animation: kawaii-bounce 2s infinite;
+}
+
+.kawaii-input::placeholder {
+  color: #f472b6b7;
+  opacity: 1;
+}
+
+.kawaii-btn {
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px #fbcfe8bb;
+  background: linear-gradient(90deg, #fbcfe8, #a7f3d0 70%);
+  color: #6b21a8;
+  border: none;
+  transition: background 0.25s, transform 0.13s;
+  cursor: pointer;
+}
+.kawaii-btn:hover {
+  background: linear-gradient(90deg, #a7f3d0, #fbcfe8 90%);
+  transform: scale(1.03);
+}
+
+.kawaii-section {
+  background: rgba(255,245,255,0.92);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px #f472b63d;
+  border: 2px solid #fbcfe8;
+  padding: 2rem 1rem;
+}
+
+.kawaii-formula-label {
+  color: #ea4aaa;
+  font-weight: 500;
+}
+
+.kawaii-result-value {
+  color: #0891b2;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.kawaii-result-value-final {
+  color: #65a30d;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+@media (max-width: 520px) {
+  .kawaii-section {
+    padding: 1.1rem 0.4rem;
+  }
+  .kawaii-input {
+    font-size: 1rem;
+    padding: 9px;
+  }
 }
