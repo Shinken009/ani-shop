@@ -1,125 +1,129 @@
 "use client";
 import { useState } from "react";
 
-export default function AniShop() {
-  const [products, setProducts] = useState([
-    { quantity: "", value: "", percent: "" },
-  ]);
+export default function Home() {
+  const [cantidad, setCantidad] = useState("");
+  const [valorCaja, setValorCaja] = useState("");
+  const [porcentaje, setPorcentaje] = useState("");
+  const [costoUnitario, setCostoUnitario] = useState(null);
+  const [precioVenta, setPrecioVenta] = useState(null);
+  const [gananciaTotal, setGananciaTotal] = useState(null);
 
-  const handleChange = (index, field, value) => {
-    const newProducts = [...products];
-    newProducts[index][field] = value;
-    setProducts(newProducts);
+  const calcular = () => {
+    if (!cantidad || !valorCaja) return;
+    const costo = valorCaja / cantidad;
+    const venta = costo * (1 + (porcentaje || 0) / 100);
+    const gananciaPorUnidad = venta - costo;
+    const gananciaTotalCalc = gananciaPorUnidad * cantidad;
+    setCostoUnitario(costo);
+    setPrecioVenta(venta);
+    setGananciaTotal(gananciaTotalCalc);
   };
 
-  const handleReset = () => {
-    setProducts([{ quantity: "", value: "", percent: "" }]);
+  const resetear = () => {
+    setCantidad("");
+    setValorCaja("");
+    setPorcentaje("");
+    setCostoUnitario(null);
+    setPrecioVenta(null);
+    setGananciaTotal(null);
   };
-
-  const addProduct = () => {
-    setProducts([...products, { quantity: "", value: "", percent: "" }]);
-  };
-
-  const totalProfit = products.reduce((acc, p) => {
-    const qty = parseFloat(p.quantity) || 0;
-    const val = parseFloat(p.value) || 0;
-    const perc = parseFloat(p.percent) || 0;
-    const profit = qty * val * (perc / 100);
-    return acc + profit;
-  }, 0);
 
   return (
     <main
-      className="min-h-screen bg-cover bg-center flex flex-col items-center text-pink-700"
-      style={{ backgroundImage: "url('/background.png')" }}
+      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center text-gray-700 p-6"
+      style={{ backgroundImage: "url('/pixel-bg.png')" }}
     >
-      <div className="flex flex-col items-center mt-6">
-        <img
-          src="/logo.png"
-          alt="Ani Shop logo"
-          className="w-32 h-auto drop-shadow-lg"
-        />
-      </div>
-
-      <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 mt-6 w-[90%] md:w-[600px] shadow-2xl">
-        <h1 className="text-2xl md:text-3xl font-bold text-center mb-4 text-pink-600 drop-shadow-sm">
-          Calculadora de Productos ✨
-        </h1>
-
-        {products.map((p, i) => {
-          const qty = parseFloat(p.quantity) || 0;
-          const val = parseFloat(p.value) || 0;
-          const perc = parseFloat(p.percent) || 0;
-          const costUnit = val;
-          const gain = qty * val * (perc / 100);
-
-          return (
-            <div
-              key={i}
-              className="bg-pink-100 rounded-2xl p-4 mb-4 border-2 border-pink-200 shadow-inner"
-            >
-              <div className="flex flex-col gap-2">
-                <label className="font-semibold">Cantidad:</label>
-                <input
-                  type="number"
-                  value={p.quantity}
-                  onChange={(e) => handleChange(i, "quantity", e.target.value)}
-                  className="kawaii-input"
-                  placeholder="Ej: 10"
-                />
-                <label className="font-semibold">Valor del producto:</label>
-                <input
-                  type="number"
-                  value={p.value}
-                  onChange={(e) => handleChange(i, "value", e.target.value)}
-                  className="kawaii-input"
-                  placeholder="Ej: 5000"
-                />
-                <label className="font-semibold">
-                  Porcentaje de ganancia (%):
-                </label>
-                <input
-                  type="number"
-                  value={p.percent}
-                  onChange={(e) => handleChange(i, "percent", e.target.value)}
-                  className="kawaii-input"
-                  placeholder="Ej: 20"
-                />
-              </div>
-
-              <div className="mt-3 text-center">
-                <p className="text-sm text-gray-600">Costo unitario:</p>
-                <p className="text-lg font-bold text-pink-600">
-                  {costUnit.toLocaleString("es-CL")}
-                </p>
-                <p className="text-sm text-gray-600 mt-1">Ganancia total:</p>
-                <p className="text-lg font-bold text-green-600">
-                  ${gain.toLocaleString("es-CL")}
-                </p>
-              </div>
-            </div>
-          );
-        })}
-
-        <div className="flex justify-between mt-4">
-          <button
-            onClick={addProduct}
-            className="bg-pink-400 hover:bg-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-md"
-          >
-            ➕ Agregar Producto
-          </button>
-          <button
-            onClick={handleReset}
-            className="bg-yellow-300 hover:bg-yellow-400 text-pink-700 px-4 py-2 rounded-full text-sm font-semibold shadow-md"
-          >
-            💫 Resetear
-          </button>
+      <div className="bg-white/70 backdrop-blur-md rounded-3xl shadow-lg p-8 w-full max-w-md border-4 border-pink-200">
+        <div className="flex flex-col items-center mb-6">
+          <img
+            src="/ani-logo.png"
+            alt="Ani Shop Logo"
+            className="w-32 mb-2 animate-bounce"
+          />
+          <h1 className="text-3xl font-extrabold text-pink-500 drop-shadow-md">
+            Ani Shop
+          </h1>
         </div>
 
-        <div className="mt-6 text-center">
-          <h2 className="text-lg font-bold text-purple-600">
-            🌟 Ganancia Total: ${totalProfit.toLocaleString("es-CL")}
-          </h2>
+        <h2 className="text-lg font-semibold text-center text-pink-600 mb-4">
+          Calculadora de Productos 💖
+        </h2>
+
+        <div className="space-y-4">
+          <label className="block">
+            <span className="text-sm font-medium text-pink-500">
+              Cantidad de productos:
+            </span>
+            <input
+              type="number"
+              value={cantidad}
+              onChange={(e) => setCantidad(e.target.value)}
+              className="w-full mt-1 p-2 rounded-xl border-2 border-pink-300 bg-pink-50 focus:ring-2 focus:ring-pink-400 outline-none"
+            />
+          </label>
+
+          <label className="block">
+            <span className="text-sm font-medium text-pink-500">
+              Costo total de la caja ($):
+            </span>
+            <input
+              type="number"
+              value={valorCaja}
+              onChange={(e) => setValorCaja(e.target.value)}
+              className="w-full mt-1 p-2 rounded-xl border-2 border-pink-300 bg-pink-50 focus:ring-2 focus:ring-pink-400 outline-none"
+            />
+          </label>
+
+          <label className="block">
+            <span className="text-sm font-medium text-pink-500">
+              Porcentaje de ganancia (%):
+            </span>
+            <input
+              type="number"
+              value={porcentaje}
+              onChange={(e) => setPorcentaje(e.target.value)}
+              className="w-full mt-1 p-2 rounded-xl border-2 border-pink-300 bg-pink-50 focus:ring-2 focus:ring-pink-400 outline-none"
+            />
+          </label>
+
+          <div className="flex justify-between mt-6">
+            <button
+              onClick={calcular}
+              className="bg-pink-400 hover:bg-pink-500 text-white font-semibold py-2 px-4 rounded-full shadow-md"
+            >
+              Calcular ✨
+            </button>
+            <button
+              onClick={resetear}
+              className="bg-yellow-300 hover:bg-yellow-400 text-gray-800 font-semibold py-2 px-4 rounded-full shadow-md"
+            >
+              Reset 🧸
+            </button>
+          </div>
+
+          {costoUnitario !== null && (
+            <div className="mt-6 bg-white/80 p-4 rounded-2xl text-center border-2 border-pink-200 shadow-inner">
+              <p className="text-pink-600 font-semibold text-lg">
+                💰 Costo unitario:{" "}
+                <span className="font-bold text-pink-700">
+                  ${costoUnitario.toFixed(2)}
+                </span>
+              </p>
+              <p className="text-green-600 font-semibold text-lg">
+                🛍️ Precio sugerido:{" "}
+                <span className="font-bold text-green-700">
+                  ${precioVenta.toFixed(2)}
+                </span>
+              </p>
+              <p className="text-purple-600 font-semibold text-lg">
+                🌈 Ganancia total:{" "}
+                <span className="font-bold text-purple-700">
+                  ${gananciaTotal.toFixed(2)}
+                </span>
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </main>

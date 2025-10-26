@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Mi Proyecto",
-  description: "Aplicación creada con Next.js",
+  title: "Ani Shop",
+  description: "Tienda de Anita Sol",
 };
 
 export default function RootLayout({ children }) {
