@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Comic Neue', cursive;
+}
+
+.kawaii-input {
+  border: 2px solid #fbcfe8;
+  border-radius: 12px;
+  padding: 8px;
+  background-color: #fff0f6;
+  outline: none;
+  transition: 0.3s;
+}
+
+.kawaii-input:focus {
+  border-color: #f472b6;
+  box-shadow: 0 0 6px #f9a8d4;
+}
