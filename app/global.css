@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Comic Neue', cursive;
+  background-image: url("/pixel-bg.png");
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center;
+  min-height: 100vh;
 }
 
 .kawaii-input {

@@ -37,11 +37,11 @@ export default function Home() {
       <div className="bg-white/70 backdrop-blur-md rounded-3xl shadow-lg p-8 w-full max-w-md border-4 border-pink-200">
         <div className="flex flex-col items-center mb-6">
           <img
-            src="/ani-logo.png"
+            src="/logo.png"
             alt="Ani Shop Logo"
-            className="w-32 mb-2 animate-bounce"
+            className="w-32 h-auto mb-2"
           />
-          <h1 className="text-3xl font-extrabold text-pink-500 drop-shadow-md">
+          <h1 className="text-3xl font-bold text-pink-700 drop-shadow-md">
             Ani Shop
           </h1>
         </div>
